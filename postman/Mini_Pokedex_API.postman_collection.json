@@ -1,0 +1,493 @@
+{
+	"info": {
+		"_postman_id": "mini-pokedex-api-collection",
+		"name": "Mini Pokedex API",
+		"description": "Coleccion de pruebas para la API REST del Mini Pokedex.\n\nIncluye endpoints para gestionar:\n- Entrenadores\n- Pokemon\n- Combates\n\n**Instrucciones:**\n1. Importar esta coleccion en Postman\n2. Configurar la variable {{base_url}} con tu URL local (ej: http://localhost:8000/api)\n3. Ejecutar las pruebas en orden: Entrenadores -> Pokemon -> Combates",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Entrenadores",
+			"description": "Endpoints para gestionar entrenadores Pokemon",
+			"item": [
+				{
+					"name": "Obtener todos los entrenadores",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/entrenadores",
+							"host": ["{{base_url}}"],
+							"path": ["entrenadores"]
+						},
+						"description": "Obtiene la lista de todos los entrenadores con sus Pokemon asociados."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener entrenador por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/entrenadores/1",
+							"host": ["{{base_url}}"],
+							"path": ["entrenadores", "1"]
+						},
+						"description": "Obtiene un entrenador especifico por su ID con sus Pokemon."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Pokemon de un entrenador",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/entrenadores/1/pokemons",
+							"host": ["{{base_url}}"],
+							"path": ["entrenadores", "1", "pokemons"]
+						},
+						"description": "Obtiene todos los Pokemon que pertenecen a un entrenador especifico."
+					},
+					"response": []
+				},
+				{
+					"name": "Crear entrenador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Ash Ketchum\",\n    \"ciudad\": \"Pueblo Paleta\",\n    \"edad\": 10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/entrenadores",
+							"host": ["{{base_url}}"],
+							"path": ["entrenadores"]
+						},
+						"description": "Crea un nuevo entrenador Pokemon.\n\nCampos requeridos:\n- nombre (string, max 255)\n- ciudad (string, max 255)\n- edad (integer, min 1)"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar entrenador",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Ash Ketchum\",\n    \"ciudad\": \"Ciudad Carmín\",\n    \"edad\": 11\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/entrenadores/1",
+							"host": ["{{base_url}}"],
+							"path": ["entrenadores", "1"]
+						},
+						"description": "Actualiza los datos de un entrenador existente.\n\nTodos los campos son opcionales en la actualizacion."
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar entrenador",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/entrenadores/1",
+							"host": ["{{base_url}}"],
+							"path": ["entrenadores", "1"]
+						},
+						"description": "Elimina un entrenador por su ID.\n\nNota: Esto eliminara tambien sus Pokemon asociados (cascade)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pokemon",
+			"description": "Endpoints para gestionar Pokemon",
+			"item": [
+				{
+					"name": "Obtener todos los Pokemon",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pokemons",
+							"host": ["{{base_url}}"],
+							"path": ["pokemons"]
+						},
+						"description": "Obtiene la lista de todos los Pokemon con su entrenador asociado."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Pokemon por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pokemons/1",
+							"host": ["{{base_url}}"],
+							"path": ["pokemons", "1"]
+						},
+						"description": "Obtiene un Pokemon especifico por su ID con su entrenador."
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Pokemon",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entrenador_id\": 1,\n    \"nombre\": \"Pikachu\",\n    \"tipo\": \"Electrico\",\n    \"nivel\": 25\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pokemons",
+							"host": ["{{base_url}}"],
+							"path": ["pokemons"]
+						},
+						"description": "Crea un nuevo Pokemon.\n\nCampos requeridos:\n- entrenador_id (integer, debe existir en tabla entrenadores)\n- nombre (string, max 255)\n- tipo (string, max 255)\n- nivel (integer, min 1, max 100)"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Pokemon",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Raichu\",\n    \"tipo\": \"Electrico\",\n    \"nivel\": 50\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pokemons/1",
+							"host": ["{{base_url}}"],
+							"path": ["pokemons", "1"]
+						},
+						"description": "Actualiza los datos de un Pokemon existente.\n\nTodos los campos son opcionales en la actualizacion."
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Pokemon",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pokemons/1",
+							"host": ["{{base_url}}"],
+							"path": ["pokemons", "1"]
+						},
+						"description": "Elimina un Pokemon por su ID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Combates",
+			"description": "Endpoints para gestionar combates entre Pokemon",
+			"item": [
+				{
+					"name": "Obtener todos los combates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/combates",
+							"host": ["{{base_url}}"],
+							"path": ["combates"]
+						},
+						"description": "Obtiene la lista de todos los combates con los Pokemon participantes."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener combate por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/combates/1",
+							"host": ["{{base_url}}"],
+							"path": ["combates", "1"]
+						},
+						"description": "Obtiene un combate especifico por su ID con los Pokemon participantes."
+					},
+					"response": []
+				},
+				{
+					"name": "Crear combate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pokemon_local_id\": 1,\n    \"pokemon_visitante_id\": 2,\n    \"fecha\": \"2024-03-15 10:00:00\",\n    \"resultado\": \"Victoria Local\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/combates",
+							"host": ["{{base_url}}"],
+							"path": ["combates"]
+						},
+						"description": "Crea un nuevo combate entre dos Pokemon.\n\nCampos requeridos:\n- pokemon_local_id (integer, debe existir en tabla pokemons)\n- pokemon_visitante_id (integer, debe existir en tabla pokemons, diferente al local)\n- fecha (datetime, formato: YYYY-MM-DD HH:MM:SS)\n\nCampos opcionales:\n- resultado (string, nullable)"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar combate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fecha\": \"2024-03-16 15:30:00\",\n    \"resultado\": \"Victoria Visitante\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/combates/1",
+							"host": ["{{base_url}}"],
+							"path": ["combates", "1"]
+						},
+						"description": "Actualiza los datos de un combate existente.\n\nTodos los campos son opcionales en la actualizacion."
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar combate",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/combates/1",
+							"host": ["{{base_url}}"],
+							"path": ["combates", "1"]
+						},
+						"description": "Elimina un combate por su ID."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pruebas de Validacion",
+			"description": "Pruebas para verificar que las validaciones funcionan correctamente",
+			"item": [
+				{
+					"name": "Crear entrenador sin nombre (error 422)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ciudad\": \"Pueblo Paleta\",\n    \"edad\": 10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/entrenadores",
+							"host": ["{{base_url}}"],
+							"path": ["entrenadores"]
+						},
+						"description": "Prueba que debe retornar error 422 por falta del campo nombre."
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Pokemon con entrenador inexistente (error 422)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entrenador_id\": 9999,\n    \"nombre\": \"Pikachu\",\n    \"tipo\": \"Electrico\",\n    \"nivel\": 25\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pokemons",
+							"host": ["{{base_url}}"],
+							"path": ["pokemons"]
+						},
+						"description": "Prueba que debe retornar error 422 porque el entrenador no existe."
+					},
+					"response": []
+				},
+				{
+					"name": "Crear combate con mismo Pokemon (error 422)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pokemon_local_id\": 1,\n    \"pokemon_visitante_id\": 1,\n    \"fecha\": \"2024-03-15 10:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/combates",
+							"host": ["{{base_url}}"],
+							"path": ["combates"]
+						},
+						"description": "Prueba que debe retornar error 422 porque un Pokemon no puede combatir contra si mismo."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener entrenador inexistente (error 404)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/entrenadores/9999",
+							"host": ["{{base_url}}"],
+							"path": ["entrenadores", "9999"]
+						},
+						"description": "Prueba que debe retornar error 404 porque el entrenador no existe."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
