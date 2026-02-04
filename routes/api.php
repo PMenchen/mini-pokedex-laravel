@@ -6,12 +6,12 @@ use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\EntrenadorController;
 
 Route::get('/pokemons', [PokemonController::class, 'index']);
-Route::get('/pokemons{id}', [PokemonController::class, 'show']);
+Route::get('/pokemons/{id}', [PokemonController::class, 'show']);
 Route::get('/entrenadores/{entrenadorId}', [PokemonController::class, 'porEntrenador']);
 
 
 Route::get('/entrenadores', [EntrenadorController::class, 'index']);
-Route::get('/entrenadores{id}', [EntrenadorController::class, 'show']);
+Route::get('/entrenadores/{id}', [EntrenadorController::class, 'show']);
 
 
 Route::get('/combates', [CombateController::class, 'index']);

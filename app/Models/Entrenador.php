@@ -17,7 +17,7 @@ class Entrenador extends Model
 
     protected $table = 'entrenadores';
 
-    public function pokemon(){
+    public function pokemons(){
         return $this->hasMany(Pokemon::class);
     }
 }

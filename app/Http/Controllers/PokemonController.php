@@ -21,7 +21,7 @@ class PokemonController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        $pokemon = Pokemon::with('club')->find($id);
+        $pokemon = Pokemon::with('entrenador')->find($id);
 
         if (!$pokemon) {
             return response()->json([
@@ -48,7 +48,7 @@ class PokemonController extends Controller
         ]);
 
         $pokemon = Pokemon::create($validated);
-        $pokemon->load('club');
+        $pokemon->load('entrenador');
 
         return response()->json([
             'success' => true,

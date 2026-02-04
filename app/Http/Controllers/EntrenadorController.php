@@ -51,7 +51,7 @@ class EntrenadorController extends Controller
         return response()->json([
             'success' => true,
             'data' => $entrenador,
-            'message' => 'Club creado correctamente'
+            'message' => 'Entrenador creado correctamente'
         ], 201);
     }
 
