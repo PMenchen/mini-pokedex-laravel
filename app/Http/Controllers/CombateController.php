@@ -48,7 +48,7 @@ class CombateController extends Controller
         ]);
 
         $combate = Combate::create($validated);
-        $combate->load(['liga', 'pokemonLocal', 'pokemonVisitante']);
+        $combate->load(['pokemonLocal', 'pokemonVisitante']);
 
         return response()->json([
             'success' => true,

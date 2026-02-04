@@ -10,7 +10,7 @@ class EntrenadorController extends Controller
 {
     public function index():JsonResponse
     {
-        $entrenadores = Entrenador::with('pokemons')->get();
+        $entrenadores = Entrenador::with('pokemon')->get();
 
         return response()->json([
             'success' =>true,
@@ -21,7 +21,7 @@ class EntrenadorController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        $entrenador = Entrenador::with('pokemons')->find($id);
+        $entrenador = Entrenador::with('pokemon')->find($id);
 
         if (!$entrenador) {
             return response()->json([
